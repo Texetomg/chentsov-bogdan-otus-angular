@@ -9,35 +9,38 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, NzTableModule, FormModalComponent, NzButtonModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    NzTableModule,
+    FormModalComponent,
+    NzButtonModule,
+  ],
   templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css'
+  styleUrl: './tasks.component.css',
 })
-
 export class TasksComponent {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   isVisible = false;
-  formData = null
+  formData = null;
 
   showModal(data: any): void {
-    this.formData = data
+    this.formData = data;
     this.isVisible = true;
   }
 
-  dataSet = []
+  dataSet = [];
   private readonly reloadSubject = new BehaviorSubject<void>(undefined);
 
-
   public readonly tasks$ = this.reloadSubject.pipe(
-    switchMap(() =>
-      this.apiService
-        .getTasks()
-    ),
+    switchMap(() => this.apiService.getTasks())
   );
 
   public reloadTasks(): void {
-    console.log('reload')
+    console.log('reload');
     this.reloadSubject.next();
   }
 }
