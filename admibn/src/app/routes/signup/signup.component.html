@@ -1,1 +1,56 @@
-<p>signup works!</p>
+<form
+  nz-form
+  [formGroup]="validateForm"
+  class="login-form"
+  (ngSubmit)="submitForm()"
+>
+  <h3>Sign in</h3>
+  Sign in below to access your account
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your login!">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="login"
+          placeholder="Login"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your email!">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="email"
+          placeholder="Email Address"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group>
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="Password"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    nzType="primary"
+  >
+    Sign up
+  </button>
+  <div>
+    Have an account?
+    <a href="/signin"> Sign in.</a>
+  </div>
+</form>

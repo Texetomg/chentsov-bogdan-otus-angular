@@ -4,7 +4,8 @@ import { TasksComponent } from './routes/tasks/tasks.component';
 import { UsersComponent } from './routes/users/users.component';
 import { SigninComponent } from './routes/signin/signin.component';
 import { SignupComponent } from './routes/signup/signup.component';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { FormLayoutComponent } from './components/form-layout/form-layout.component';
 
 export const routes: Routes = [
   {
@@ -28,11 +29,13 @@ export const routes: Routes = [
     children: [{ path: 'users', component: UsersComponent }],
   },
   {
-    path: 'signin',
-    component: SigninComponent,
+    path: '',
+    component: FormLayoutComponent,
+    children: [{ path: 'signin', component: SigninComponent }],
   },
   {
-    path: 'signup',
-    component: SignupComponent,
+    path: '',
+    component: FormLayoutComponent,
+    children: [{ path: 'signup', component: SignupComponent }],
   },
 ];
