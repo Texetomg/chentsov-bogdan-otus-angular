@@ -1,0 +1,44 @@
+<nz-layout class="layout">
+  <nz-sider>
+    <div class="logo">
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Home</a
+      >
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item>
+        <a
+          routerLink="/tasks"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Tasks</a
+        >
+      </li>
+      <li nz-menu-item>
+        <a
+          routerLink="/users"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Users</a
+        >
+      </li>
+      <li nz-menu-item>
+        <span>nav 3</span>
+      </li>
+      <li nz-menu-item>
+        <span>nav 4</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>Admin panel</nz-footer>
+  </nz-layout>
+</nz-layout>

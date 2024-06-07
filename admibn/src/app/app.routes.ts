@@ -4,6 +4,7 @@ import { TasksComponent } from './routes/tasks/tasks.component';
 import { UsersComponent } from './routes/users/users.component';
 import { SigninComponent } from './routes/signin/signin.component';
 import { SignupComponent } from './routes/signup/signup.component';
+import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
   {
@@ -12,20 +13,19 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: '',
+    component: LayoutComponent,
+    children: [{ path: 'home', component: HomeComponent }],
   },
   {
-    path: 'tasks',
-    component: TasksComponent,
+    path: '',
+    component: LayoutComponent,
+    children: [{ path: 'tasks', component: TasksComponent }],
   },
   {
-    path: 'users',
-    component: UsersComponent,
-  },
-  {
-    path: 'users',
-    component: UsersComponent,
+    path: '',
+    component: LayoutComponent,
+    children: [{ path: 'users', component: UsersComponent }],
   },
   {
     path: 'signin',
