@@ -8,14 +8,14 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   constructor() {}
+  baseUrl = 'http://localhost:3000/api';
 
   httpClient = inject(HttpClient);
-  baseUrl = 'http://localhost:3000/api';
 
   signup(payload: { login?: string; email?: string; password?: string }) {
     return this.httpClient.post(`${this.baseUrl}/users`, payload).pipe(
       tap((result: any) => {
-        localStorage.setItem('token', JSON.stringify(result.token));
+        localStorage.setItem('token', result.token);
       })
     );
   }
@@ -23,7 +23,7 @@ export class AuthService {
   signin(payload: { email?: string; password?: string }) {
     return this.httpClient.post(`${this.baseUrl}/auth/login`, payload).pipe(
       tap((result: any) => {
-        localStorage.setItem('token', JSON.stringify(result.token));
+        localStorage.setItem('token', result.token);
       })
     );
   }
@@ -34,5 +34,13 @@ export class AuthService {
 
   signout() {
     localStorage.removeItem('token');
+  }
+
+  whoami() {
+    return this.httpClient.get(`auth/profile`).pipe(
+      tap((result: any) => {
+        console.log(result);
+      })
+    );
   }
 }
