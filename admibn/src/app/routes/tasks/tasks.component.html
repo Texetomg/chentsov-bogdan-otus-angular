@@ -1,10 +1,8 @@
-<a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page"
-  >Home</a
->
-<p>TASKS works!</p>
+<p>TASKS</p>
 <nz-table #basicTable [nzData]="tasks$ | async">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>description</th>
       <th>difficulty</th>
@@ -14,6 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.id }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.description }}</td>
       <td>{{ data.difficulty }}</td>

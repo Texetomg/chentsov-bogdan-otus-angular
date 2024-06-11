@@ -7,14 +7,6 @@
         ariaCurrentWhenActive="page"
         >Home</a
       >
-      <button
-        nz-button
-        class="login-form-button login-form-margin"
-        nzType="primary"
-        (click)="signout()"
-      >
-        Logout
-      </button>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item>
@@ -34,15 +26,29 @@
         >
       </li>
       <li nz-menu-item>
-        <span>nav 3</span>
-      </li>
-      <li nz-menu-item>
-        <span>nav 4</span>
+        <a
+          routerLink="/tags"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Tags</a
+        >
       </li>
     </ul>
   </nz-sider>
   <nz-layout class="right-layout">
-    <nz-header>Header</nz-header>
+    <nz-header>
+      <nz-avatar
+        nzSrc="https://avatar.iran.liara.run/username?username=Admin"
+      ></nz-avatar>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        nzType="primary"
+        (click)="signout()"
+      >
+        Logout
+      </button></nz-header
+    >
     <nz-content>
       <div class="inner-content">
         <router-outlet></router-outlet>

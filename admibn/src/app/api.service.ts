@@ -14,4 +14,12 @@ export class ApiService {
       })
     );
   }
+
+  public getUsers(): Observable<any> {
+    return this.http.get<any>('users').pipe(
+      catchError((err) => {
+        throw new Error(err);
+      })
+    );
+  }
 }
