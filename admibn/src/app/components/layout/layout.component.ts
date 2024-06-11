@@ -5,6 +5,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-layout',
@@ -16,6 +18,8 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
     RouterLink,
     NzButtonModule,
     NzAvatarModule,
+    NzMenuModule,
+    NzIconModule,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',

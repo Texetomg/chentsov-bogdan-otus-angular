@@ -6,6 +6,8 @@ import { ApiService } from '../../api.service';
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { FormModalComponent } from '../../components/form-modal/form-modal.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { TableHeaderComponent } from '../../components/table-header/table-header.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-users',
@@ -18,6 +20,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzTableModule,
     FormModalComponent,
     NzButtonModule,
+    TableHeaderComponent,
+    NzIconModule,
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',

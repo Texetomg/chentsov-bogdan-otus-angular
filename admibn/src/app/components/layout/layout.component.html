@@ -1,6 +1,6 @@
 <nz-layout class="layout">
   <nz-sider>
-    <div class="logo">
+    <div class="home">
       <a
         routerLink="/home"
         routerLinkActive="active"
@@ -44,11 +44,11 @@
         nz-button
         class="login-form-button login-form-margin"
         nzType="primary"
+        nzShape="circle"
         (click)="signout()"
       >
-        Logout
-      </button></nz-header
-    >
+        <span nz-icon nzType="logout" nzTheme="outline"></span></button
+    ></nz-header>
     <nz-content>
       <div class="inner-content">
         <router-outlet></router-outlet>

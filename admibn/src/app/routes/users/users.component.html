@@ -1,4 +1,4 @@
-<p>USERS</p>
+<app-table-header />
 <nz-table #basicTable [nzData]="tasks$ | async">
   <thead>
     <tr>
@@ -6,8 +6,8 @@
       <th>Login</th>
       <th>Email</th>
       <th>Role</th>
-      <th></th>
-      <th></th>
+      <th nzWidth="50px"></th>
+      <th nzWidth="50px"></th>
     </tr>
   </thead>
   <tbody>
@@ -16,13 +16,15 @@
       <td>{{ data.login }}</td>
       <td>{{ data.email }}</td>
       <td>{{ data.role }}</td>
-      <td>
+      <td (nzWidth)="100">
         <button nz-button nzType="primary" (click)="showModal(data)">
-          Edit
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
         </button>
       </td>
       <td>
-        <a>Delete</a>
+        <button nz-button nzDanger>
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </button>
       </td>
     </tr>
   </tbody>
