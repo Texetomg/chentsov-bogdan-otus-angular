@@ -7,6 +7,7 @@ import { SignupComponent } from './routes/signup/signup.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FormLayoutComponent } from './components/form-layout/form-layout.component';
 import { authGuard } from './auth/auth.guard';
+import { TagsComponent } from './routes/tags/tags.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,13 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'users', component: UsersComponent, canActivate: [authGuard] },
+    ],
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'tags', component: TagsComponent, canActivate: [authGuard] },
     ],
   },
   {

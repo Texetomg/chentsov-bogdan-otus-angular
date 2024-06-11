@@ -22,4 +22,12 @@ export class ApiService {
       })
     );
   }
+
+  public getTags(): Observable<any> {
+    return this.http.get<any>('tags').pipe(
+      catchError((err) => {
+        throw new Error(err);
+      })
+    );
+  }
 }
