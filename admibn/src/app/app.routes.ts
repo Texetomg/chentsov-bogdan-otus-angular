@@ -6,6 +6,7 @@ import { SigninComponent } from './routes/signin/signin.component';
 import { SignupComponent } from './routes/signup/signup.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FormLayoutComponent } from './components/form-layout/form-layout.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -16,17 +17,23 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'home', component: HomeComponent }],
+    children: [
+      { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+    ],
   },
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'tasks', component: TasksComponent }],
+    children: [
+      { path: 'tasks', component: TasksComponent, canActivate: [authGuard] },
+    ],
   },
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'users', component: UsersComponent }],
+    children: [
+      { path: 'users', component: UsersComponent, canActivate: [authGuard] },
+    ],
   },
   {
     path: '',

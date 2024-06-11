@@ -1,11 +1,11 @@
 <form
   nz-form
-  [formGroup]="validateForm"
+  [formGroup]="signupForm"
   class="login-form"
-  (ngSubmit)="submitForm()"
+  (ngSubmit)="onSubmit()"
 >
-  <h3>Sign in</h3>
-  Sign in below to access your account
+  <h3>Sign up</h3>
+  Sign up below to create your account
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your login!">
       <nz-input-group>
@@ -42,10 +42,12 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   <button
     nz-button
     class="login-form-button login-form-margin"
     nzType="primary"
+    disabled="{{ signupForm.invalid }}"
   >
     Sign up
   </button>
