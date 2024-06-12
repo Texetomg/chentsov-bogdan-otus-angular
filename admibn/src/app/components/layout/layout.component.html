@@ -1,15 +1,17 @@
 <nz-layout class="layout">
   <nz-sider>
     <div class="home">
-      <a
-        routerLink="/home"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Home</a
-      >
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
+      <li nz-menu-item nzSelected="{{ this.router.url === '/home' }}">
+        <a
+          routerLink="/home"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Home</a
+        >
+      </li>
+      <li nz-menu-item nzSelected="{{ this.router.url === '/tasks' }}">
         <a
           routerLink="/tasks"
           routerLinkActive="active"
@@ -17,7 +19,7 @@
           >Tasks</a
         >
       </li>
-      <li nz-menu-item>
+      <li nz-menu-item nzSelected="{{ this.router.url === '/users' }}">
         <a
           routerLink="/users"
           routerLinkActive="active"
@@ -25,7 +27,7 @@
           >Users</a
         >
       </li>
-      <li nz-menu-item>
+      <li nz-menu-item nzSelected="{{ this.router.url === '/tags' }}">
         <a
           routerLink="/tags"
           routerLinkActive="active"
@@ -38,7 +40,9 @@
   <nz-layout class="right-layout">
     <nz-header>
       <nz-avatar
-        nzSrc="https://avatar.iran.liara.run/username?username={{authService.getUserLogin()}}"
+        nzSrc="https://avatar.iran.liara.run/username?username={{
+          authService.getUserLogin()
+        }}"
       ></nz-avatar>
       <button
         nz-button
