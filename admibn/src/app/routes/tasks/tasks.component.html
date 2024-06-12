@@ -1,4 +1,4 @@
-<app-table-header title="tasks" (onClick)="onClick()"/>
+<app-table-header title="Tasks" (onClick)="showModal()" />
 <nz-table #basicTable [nzData]="tasks$ | async">
   <thead>
     <tr>
@@ -23,7 +23,7 @@
       </td>
       <td>
         <button nz-button nzDanger>
-          <span nz-icon nzType="delete" nzTheme="outline"></span>
+          <span nz-icon nzType="delete" nzTheme="outline" (click)="onDelete(data.id)"></span>
         </button>
       </td>
     </tr>
@@ -32,7 +32,8 @@
 <app-form-modal-tasks
   *ngIf="isVisible"
   [isVisible]="isVisible"
-  (isVisibleChange)="isVisible = $event"
-  (reloadOnChange)="reloadTasks()"
+  (onEditSubmit)="onEditSubmit($event)"
+  (onAddSubmit)="onAddSubmit($event)"
   [formData]="formData"
+  entityName="task"
 />

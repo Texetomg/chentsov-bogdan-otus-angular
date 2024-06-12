@@ -15,6 +15,31 @@ export class ApiService {
     );
   }
 
+  public patchTask(payload: any) {
+    return this.http.patch<any>(`tasks/${payload.id}`, payload).pipe(
+      catchError((err) => {
+        throw new Error(err);
+      })
+    );
+  }
+
+  public postTask(payload: any) {
+    return this.http.post<any>(`tasks`, payload).pipe(
+      catchError((err) => {
+        throw new Error(err);
+      })
+    );
+  }
+
+  public deleteTask(id: any) {
+    console.log(id)
+    return this.http.delete<any>(`tasks/${id}`).pipe(
+      catchError((err) => {
+        throw new Error(err);
+      })
+    );
+  }
+
   public getUsers(): Observable<any> {
     return this.http.get<any>('users').pipe(
       catchError((err) => {

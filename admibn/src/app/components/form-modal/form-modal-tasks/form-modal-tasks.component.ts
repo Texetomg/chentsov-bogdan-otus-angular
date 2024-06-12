@@ -10,25 +10,36 @@ import {
   Validators,
 } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'app-form-modal-tasks',
   standalone: true,
-  imports: [NzModalModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzGridModule],
+  imports: [
+    NzModalModule,
+    NzFormModule,
+    NzInputModule,
+    ReactiveFormsModule,
+    NzGridModule,
+    NzSelectModule,
+  ],
   templateUrl: './form-modal-tasks.component.html',
   styleUrl: './form-modal-tasks.component.css',
 })
 export class FormModalTasksComponent {
+  @Input() entityName = '';
   @Input() isVisible = false;
-  @Output() isVisibleChange = new EventEmitter<boolean>();
-  @Output() reloadOnChange = new EventEmitter<void>();
+  @Output() onEditSubmit = new EventEmitter<any>();
+  @Output() onAddSubmit = new EventEmitter<any>();
   @Input() formData: any = null;
 
-  validateForm: FormGroup<{
+  taskForm: FormGroup<{
+    id: FormControl<string>;
     name: FormControl<string>;
     description: FormControl<string>;
     difficulty: FormControl<string>;
   }> = this.fb.group({
+    id: [''],
     name: ['', [Validators.required]],
     description: ['', [Validators.required]],
     difficulty: ['', [Validators.required]],
@@ -37,7 +48,8 @@ export class FormModalTasksComponent {
   constructor(private fb: NonNullableFormBuilder) {}
 
   ngOnInit(): void {
-    this.validateForm.patchValue({
+    this.taskForm.patchValue({
+      id: this.formData?.id,
       name: this.formData?.name,
       description: this.formData?.description,
       difficulty: this.formData?.difficulty,
@@ -45,14 +57,16 @@ export class FormModalTasksComponent {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.reloadOnChange.emit();
-    this.isVisibleChange.emit(false);
+    if (this.formData?.id) {
+      this.onEditSubmit.emit(this.taskForm.value);
+    } else {
+      this.onAddSubmit.emit(this.taskForm.value);
+    }
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisibleChange.emit(false);
+    console.log(this.taskForm.errors)
+    this.onEditSubmit.emit(null);
   }
 
   submitForm(): void {}

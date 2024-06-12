@@ -9,6 +9,7 @@ import { TableHeaderComponent } from '../../components/table-header/table-header
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormModalTasksComponent } from '../../components/form-modal/form-modal-tasks/form-modal-tasks.component';
 
+
 @Component({
   selector: 'app-tasks',
   standalone: true,
@@ -32,24 +33,38 @@ export class TasksComponent {
   isVisible = false;
   formData = null;
 
-  showModal(data: any): void {
+  showModal(data?: any): void {
     this.formData = data;
     this.isVisible = true;
   }
 
-  dataSet = [];
   private readonly reloadSubject = new BehaviorSubject<void>(undefined);
 
   public readonly tasks$ = this.reloadSubject.pipe(
     switchMap(() => this.apiService.getTasks())
   );
 
-  public reloadTasks(): void {
-    console.log('reload');
-    this.reloadSubject.next();
+  public onEditSubmit(formData: any): void {
+    if (formData) {
+      this.apiService.patchTask(formData).subscribe(() => {
+        this.reloadSubject.next();
+      });
+    }
+    this.isVisible = false;
   }
 
-  onClick() {
-    console.log('hui')
+  public onAddSubmit(formData: any): void {
+    if (formData) {
+      this.apiService.postTask(formData).subscribe(() => {
+        this.reloadSubject.next();
+      });
+    }
+    this.isVisible = false;
+  }
+
+  public onDelete(id: number): void {
+    this.apiService.deleteTask(id).subscribe(() => {
+      this.reloadSubject.next();
+    });
   }
 }
