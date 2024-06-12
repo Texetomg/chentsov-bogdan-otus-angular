@@ -1,11 +1,11 @@
-<app-table-header />
+<app-table-header title="tasks" (onClick)="onClick()"/>
 <nz-table #basicTable [nzData]="tasks$ | async">
   <thead>
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>description</th>
-      <th>difficulty</th>
+      <th>Description</th>
+      <th>Difficulty</th>
       <th nzWidth="50px"></th>
       <th nzWidth="50px"></th>
     </tr>
@@ -29,7 +29,7 @@
     </tr>
   </tbody>
 </nz-table>
-<app-form-modal
+<app-form-modal-tasks
   *ngIf="isVisible"
   [isVisible]="isVisible"
   (isVisibleChange)="isVisible = $event"

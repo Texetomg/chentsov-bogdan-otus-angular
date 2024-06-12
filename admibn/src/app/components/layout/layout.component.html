@@ -38,13 +38,12 @@
   <nz-layout class="right-layout">
     <nz-header>
       <nz-avatar
-        nzSrc="https://avatar.iran.liara.run/username?username=Admin"
+        nzSrc="https://avatar.iran.liara.run/username?username={{authService.getUserLogin()}}"
       ></nz-avatar>
       <button
         nz-button
         class="login-form-button login-form-margin"
         nzType="primary"
-        nzShape="circle"
         (click)="signout()"
       >
         <span nz-icon nzType="logout" nzTheme="outline"></span></button

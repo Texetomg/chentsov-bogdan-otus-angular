@@ -4,10 +4,10 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { ApiService } from '../../api.service';
 import { BehaviorSubject, switchMap } from 'rxjs';
-import { FormModalComponent } from '../../components/form-modal/form-modal.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TableHeaderComponent } from '../../components/table-header/table-header.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FormModalTasksComponent } from '../../components/form-modal/form-modal-tasks/form-modal-tasks.component';
 
 @Component({
   selector: 'app-tasks',
@@ -18,8 +18,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     RouterLink,
     RouterLinkActive,
     NzTableModule,
-    FormModalComponent,
     NzButtonModule,
+    FormModalTasksComponent,
     TableHeaderComponent,
     NzIconModule,
   ],
@@ -47,5 +47,9 @@ export class TasksComponent {
   public reloadTasks(): void {
     console.log('reload');
     this.reloadSubject.next();
+  }
+
+  onClick() {
+    console.log('hui')
   }
 }

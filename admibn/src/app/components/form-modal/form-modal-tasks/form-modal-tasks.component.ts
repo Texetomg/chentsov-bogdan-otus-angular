@@ -9,36 +9,38 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @Component({
-  selector: 'app-form-modal',
+  selector: 'app-form-modal-tasks',
   standalone: true,
-  imports: [NzModalModule, NzFormModule, NzInputModule, ReactiveFormsModule],
-  templateUrl: './form-modal.component.html',
-  styleUrl: './form-modal.component.css',
+  imports: [NzModalModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzGridModule],
+  templateUrl: './form-modal-tasks.component.html',
+  styleUrl: './form-modal-tasks.component.css',
 })
-export class FormModalComponent {
+export class FormModalTasksComponent {
   @Input() isVisible = false;
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() reloadOnChange = new EventEmitter<void>();
   @Input() formData: any = null;
 
   validateForm: FormGroup<{
-    userName: FormControl<string>;
-    password: FormControl<string>;
-    remember: FormControl<boolean>;
+    name: FormControl<string>;
+    description: FormControl<string>;
+    difficulty: FormControl<string>;
   }> = this.fb.group({
-    userName: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [true],
+    name: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    difficulty: ['', [Validators.required]],
   });
 
   constructor(private fb: NonNullableFormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm.patchValue({
-      userName: this.formData?.name,
-      password: this.formData?.description,
+      name: this.formData?.name,
+      description: this.formData?.description,
+      difficulty: this.formData?.difficulty,
     });
   }
 

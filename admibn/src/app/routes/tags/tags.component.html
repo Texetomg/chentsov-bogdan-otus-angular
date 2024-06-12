@@ -1,4 +1,4 @@
-<app-table-header />
+<app-table-header title="tags"/>
 <nz-table #basicTable [nzData]="tasks$ | async">
   <thead>
     <tr>
@@ -25,7 +25,7 @@
     </tr>
   </tbody>
 </nz-table>
-<app-form-modal
+<app-form-modal-tags
   *ngIf="isVisible"
   [isVisible]="isVisible"
   (isVisibleChange)="isVisible = $event"

@@ -1,6 +1,6 @@
 <div class="table-header">
-  <p>TABLE</p>
-  <button nz-button nzType="primary" nzShape="circle">
+  <p>{{ title }}</p>
+  <button nz-button nzType="primary" (click)="onClick.emit()">
     <span nz-icon nzType="plus" nzTheme="outline"></span>
   </button>
 </div>

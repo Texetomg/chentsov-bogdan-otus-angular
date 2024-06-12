@@ -4,10 +4,10 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { ApiService } from '../../api.service';
 import { BehaviorSubject, switchMap } from 'rxjs';
-import { FormModalComponent } from '../../components/form-modal/form-modal.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TableHeaderComponent } from '../../components/table-header/table-header.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FormModalTagsComponent } from '../../components/form-modal/form-modal-tags/form-modal-tags.component';
 
 @Component({
   selector: 'app-tasks',
@@ -18,7 +18,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     RouterLink,
     RouterLinkActive,
     NzTableModule,
-    FormModalComponent,
+    FormModalTagsComponent,
     NzButtonModule,
     TableHeaderComponent,
     NzIconModule,
