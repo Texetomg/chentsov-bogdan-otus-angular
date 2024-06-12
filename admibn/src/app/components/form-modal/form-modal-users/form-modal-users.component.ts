@@ -10,49 +10,61 @@ import {
   Validators,
 } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'app-form-modal-users',
   standalone: true,
-  imports: [NzModalModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzGridModule],
+  imports: [
+    NzModalModule,
+    NzFormModule,
+    NzInputModule,
+    ReactiveFormsModule,
+    NzGridModule,
+    NzSelectModule,
+  ],
   templateUrl: './form-modal-users.component.html',
   styleUrl: './form-modal-users.component.css',
 })
 export class FormModalUsersComponent {
+  @Input() entityName = '';
   @Input() isVisible = false;
-  @Output() isVisibleChange = new EventEmitter<boolean>();
-  @Output() reloadOnChange = new EventEmitter<void>();
+  @Output() onEditSubmit = new EventEmitter<any>();
+  @Output() onAddSubmit = new EventEmitter<any>();
   @Input() formData: any = null;
 
-  validateForm: FormGroup<{
-    name: FormControl<string>;
-    description: FormControl<string>;
-    difficulty: FormControl<string>;
+  usersForm: FormGroup<{
+    login: FormControl<string>;
+    email: FormControl<string>;
+    password: FormControl<string>;
+    role: FormControl<string>;
   }> = this.fb.group({
-    name: ['', [Validators.required]],
-    description: ['', [Validators.required]],
-    difficulty: ['', [Validators.required]],
+    login: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    role: ['', [Validators.required]],
   });
 
   constructor(private fb: NonNullableFormBuilder) {}
 
   ngOnInit(): void {
-    this.validateForm.patchValue({
-      name: this.formData?.name,
-      description: this.formData?.description,
-      difficulty: this.formData?.difficulty,
+    this.usersForm.patchValue({
+      login: this.formData?.login,
+      email: this.formData?.email,
+      role: this.formData?.role,
     });
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.reloadOnChange.emit();
-    this.isVisibleChange.emit(false);
+    if (this.formData?.id) {
+      this.onEditSubmit.emit(this.usersForm.value);
+    } else {
+      this.onAddSubmit.emit(this.usersForm.value);
+    }
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisibleChange.emit(false);
+    this.onEditSubmit.emit(null);
   }
 
   submitForm(): void {}

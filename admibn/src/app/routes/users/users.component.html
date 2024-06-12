@@ -1,5 +1,5 @@
-<app-table-header title="Users"/>
-<nz-table #basicTable [nzData]="tasks$ | async">
+<app-table-header title="Users" (onClick)="showModal()" />
+<nz-table #basicTable [nzData]="users$ | async">
   <thead>
     <tr>
       <th>ID</th>
@@ -16,14 +16,19 @@
       <td>{{ data.login }}</td>
       <td>{{ data.email }}</td>
       <td>{{ data.role }}</td>
-      <td (nzWidth)="100">
+      <td (nzWidth)="(100)">
         <button nz-button nzType="primary" (click)="showModal(data)">
           <span nz-icon nzType="edit" nzTheme="outline"></span>
         </button>
       </td>
       <td>
         <button nz-button nzDanger>
-          <span nz-icon nzType="delete" nzTheme="outline"></span>
+          <span
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+            (click)="onDelete(data.id)"
+          ></span>
         </button>
       </td>
     </tr>
@@ -32,7 +37,8 @@
 <app-form-modal-users
   *ngIf="isVisible"
   [isVisible]="isVisible"
-  (isVisibleChange)="isVisible = $event"
-  (reloadOnChange)="reloadTasks()"
+  (onEditSubmit)="onEditSubmit($event)"
+  (onAddSubmit)="onAddSubmit($event)"
   [formData]="formData"
+  entityName="user"
 />

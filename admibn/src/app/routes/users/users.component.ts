@@ -32,7 +32,7 @@ export class UsersComponent {
   isVisible = false;
   formData = null;
 
-  showModal(data: any): void {
+  showModal(data?: any): void {
     this.formData = data;
     this.isVisible = true;
   }
@@ -40,12 +40,31 @@ export class UsersComponent {
   dataSet = [];
   private readonly reloadSubject = new BehaviorSubject<void>(undefined);
 
-  public readonly tasks$ = this.reloadSubject.pipe(
+  public readonly users$ = this.reloadSubject.pipe(
     switchMap(() => this.apiService.getUsers())
   );
 
-  public reloadTasks(): void {
-    console.log('reload');
-    this.reloadSubject.next();
+  public onEditSubmit(formData: any): void {
+    if (formData) {
+      this.apiService.patchUser(formData).subscribe(() => {
+        this.reloadSubject.next();
+      });
+    }
+    this.isVisible = false;
+  }
+
+  public onAddSubmit(formData: any): void {
+    if (formData) {
+      this.apiService.postUser(formData).subscribe(() => {
+        this.reloadSubject.next();
+      });
+    }
+    this.isVisible = false;
+  }
+
+  public onDelete(id: number): void {
+    this.apiService.deleteUser(id).subscribe(() => {
+      this.reloadSubject.next();
+    });
   }
 }

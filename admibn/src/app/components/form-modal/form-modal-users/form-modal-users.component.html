@@ -1,50 +1,54 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  nzTitle="The first Modal"
+  nzTitle="{{ formData ? 'Edit' : 'Add' + ' ' + entityName }}"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
+  nzOkDisabled="{{ !usersForm.valid }}"
 >
   <ng-container *nzModalContent>
     <form
       nz-form
       [nzLayout]="'inline'"
-      [formGroup]="validateForm"
+      [formGroup]="usersForm"
       (ngSubmit)="submitForm()"
     >
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">Name</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="login"
+          >Login</nz-form-label
+        >
         <nz-form-control
           [nzSm]="14"
           [nzXs]="24"
-          nzErrorTip="Please input task name!"
+          nzErrorTip="Please input user login!"
         >
           <nz-input-group>
-            <input formControlName="name" nz-input placeholder="Name" />
+            <input formControlName="login" nz-input placeholder="login" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label nzFor="description">Description</nz-form-label>
-        <nz-form-control nzErrorTip="Please input task description!">
+        <nz-form-label nzFor="email">Email</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user email!">
           <nz-input-group>
-            <textarea
-              formControlName="description"
-              nz-input
-              placeholder="Description"
-            ></textarea>
+            <input formControlName="email" nz-input placeholder="Email" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label nzFor="difficulty">Difficulty</nz-form-label>
-        <nz-form-control nzErrorTip="Please input task difficulty!">
+        <nz-form-label nzFor="password">Password</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user password!">
           <nz-input-group>
-            <input
-              formControlName="difficulty"
-              nz-input
-              placeholder="Difficulty"
-            />
+            <input formControlName="password" nz-input placeholder="Password" />
           </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="20" nzFor="role">Role</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user role!">
+          <nz-select formControlName="role">
+            <nz-option nzValue="user" nzLabel="User"></nz-option>
+            <nz-option nzValue="admin" nzLabel="Admin"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
     </form>
