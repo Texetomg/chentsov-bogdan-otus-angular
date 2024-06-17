@@ -1,0 +1,34 @@
+<app-table-header title="tags"/>
+<nz-table #basicTable [nzData]="tasks$ | async">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th nzWidth="50px"></th>
+      <th nzWidth="50px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.name }}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="showModal(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+      </td>
+      <td>
+        <button nz-button nzDanger>
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<app-form-modal-tags
+  *ngIf="isVisible"
+  [isVisible]="isVisible"
+  (isVisibleChange)="isVisible = $event"
+  (reloadOnChange)="reloadTasks()"
+  [formData]="formData"
+/>

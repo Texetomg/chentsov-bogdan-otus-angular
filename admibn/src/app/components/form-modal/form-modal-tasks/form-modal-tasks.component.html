@@ -1,0 +1,52 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="{{ formData ? 'Edit' : 'Add' + ' ' + entityName }}"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzOkDisabled="{{!taskForm.valid}}"
+
+>
+  <ng-container *nzModalContent>
+    <form
+      nz-form
+      [nzLayout]="'inline'"
+      [formGroup]="taskForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSpan]="20" nzFor="name">Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please input task name!">
+          <nz-input-group>
+            <input formControlName="name" nz-input placeholder="Name" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="20" nzFor="description"
+          >Description</nz-form-label
+        >
+        <nz-form-control nzErrorTip="Please input task description!">
+          <nz-input-group>
+            <textarea
+              formControlName="description"
+              nz-input
+              placeholder="Description"
+            ></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="20" nzFor="difficulty"
+          >Difficulty</nz-form-label
+        >
+        <nz-form-control nzErrorTip="Please input task difficulty!">
+          <nz-select formControlName="difficulty">
+            <nz-option nzValue="medium" nzLabel="Medium"></nz-option>
+            <nz-option nzValue="easy" nzLabel="Easy"></nz-option>
+            <nz-option nzValue="hard" nzLabel="Hard"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

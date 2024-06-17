@@ -1,0 +1,56 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="{{ formData ? 'Edit' : 'Add' + ' ' + entityName }}"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzOkDisabled="{{ !usersForm.valid }}"
+>
+  <ng-container *nzModalContent>
+    <form
+      nz-form
+      [nzLayout]="'inline'"
+      [formGroup]="usersForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="login"
+          >Login</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Please input user login!"
+        >
+          <nz-input-group>
+            <input formControlName="login" nz-input placeholder="login" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzFor="email">Email</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user email!">
+          <nz-input-group>
+            <input formControlName="email" nz-input placeholder="Email" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzFor="password">Password</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user password!">
+          <nz-input-group>
+            <input formControlName="password" nz-input placeholder="Password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="20" nzFor="role">Role</nz-form-label>
+        <nz-form-control nzErrorTip="Please input user role!">
+          <nz-select formControlName="role">
+            <nz-option nzValue="user" nzLabel="User"></nz-option>
+            <nz-option nzValue="admin" nzLabel="Admin"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>
