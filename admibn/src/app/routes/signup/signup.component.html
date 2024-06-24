@@ -1,0 +1,58 @@
+<form
+  nz-form
+  [formGroup]="signupForm"
+  class="login-form"
+  (ngSubmit)="onSubmit()"
+>
+  <h3>Sign up</h3>
+  Sign up below to create your account
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your login!">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="login"
+          placeholder="Login"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your email!">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="email"
+          placeholder="Email Address"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group>
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="Password"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    nzType="primary"
+    disabled="{{ signupForm.invalid }}"
+  >
+    Sign up
+  </button>
+  <div>
+    Have an account?
+    <a href="/signin"> Sign in.</a>
+  </div>
+</form>

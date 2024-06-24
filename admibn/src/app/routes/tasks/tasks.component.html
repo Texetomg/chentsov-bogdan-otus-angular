@@ -1,0 +1,44 @@
+<app-table-header title="Tasks" (onClick)="showModal()" />
+<nz-table #basicTable [nzData]="tasks$ | async">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Difficulty</th>
+      <th nzWidth="50px"></th>
+      <th nzWidth="50px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.description }}</td>
+      <td>{{ data.difficulty }}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="showModal(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+      </td>
+      <td>
+        <button nz-button nzDanger>
+          <span
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+            (click)="onDelete(data.id)"
+          ></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<app-form-modal-tasks
+  *ngIf="isVisible"
+  [isVisible]="isVisible"
+  (onEditSubmit)="onEditSubmit($event)"
+  (onAddSubmit)="onAddSubmit($event)"
+  [formData]="formData"
+  entityName="task"
+/>
